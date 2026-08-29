@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Claude Reset Automation</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="header">
+      <div class="header-left">
+        <div class="logo-icon">🤖</div>
+        <div>
+          <h1 class="title">Claude Reset Automation</h1>
+          <div class="status-badge" id="status-badge">
+            <span class="status-dot" id="status-dot"></span>
+            <span class="status-text" id="status-text">INITIALIZING</span>
+          </div>
+        </div>
+      </div>
+      <label class="switch">
+        <input type="checkbox" id="master-toggle" checked>
+        <span class="slider round"></span>
+      </label>
+    </header>
+
+    <!-- Usage Card -->
+    <div class="card">
+      <div class="card-row">
+        <span class="card-label">Current Usage (5-Hour)</span>
+        <span class="card-value font-bold" id="usage-percent">0%</span>
+      </div>
+      <div class="progress-bar-container">
+        <div class="progress-bar-fill" id="usage-progress" style="width: 0%;"></div>
+      </div>
+      <div class="sub-usage-row" id="weekly-usage-row">
+        <span>Weekly Limit (All Models):</span>
+        <span id="weekly-percent">0%</span>
+      </div>
+    </div>
+
+    <!-- Metrics Grid -->
+    <div class="metrics-grid">
+      <div class="metric-box">
+        <span class="metric-title">Next Reset In</span>
+        <span class="metric-value highlight" id="next-reset-countdown">--:--:--</span>
+        <span class="metric-sub" id="next-reset-time">Calculating...</span>
+      </div>
+      <div class="metric-box">
+        <span class="metric-title">Last Reset</span>
+        <span class="metric-value" id="last-reset-time">None yet</span>
+        <span class="metric-sub" id="last-message-status">Idle</span>
+      </div>
+    </div>
+
+    <!-- Next Action Banner -->
+    <div class="action-banner">
+      <span class="action-title">Next Action:</span>
+      <span class="action-desc" id="next-action-desc">Monitoring Claude usage window...</span>
+    </div>
+
+    <!-- Quick Configuration -->
+    <div class="card">
+      <div class="section-title">Automation Settings</div>
+      
+      <div class="form-group">
+        <label for="config-message">Predefined Message to Send:</label>
+        <input type="text" id="config-message" class="text-input" value="Hi" placeholder="e.g. Hi">
+      </div>
+
+      <div class="form-row">
+        <div class="form-group flex-1">
+          <label for="config-model">Model:</label>
+          <select id="config-model" class="select-input">
+            <option value="haiku" selected>Claude Haiku (Default)</option>
+            <option value="sonnet">Claude Sonnet</option>
+            <option value="opus">Claude Opus</option>
+            <option value="default">Keep Active Model</option>
+          </select>
+        </div>
+        <div class="form-group flex-1">
+          <label for="config-interval">Check Interval:</label>
+          <select id="config-interval" class="select-input">
+            <option value="15">15 seconds (Fast)</option>
+            <option value="30">30 seconds</option>
+            <option value="60" selected>1 minute (Recommended)</option>
+            <option value="120">2 minutes</option>
+            <option value="300">5 minutes</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="toggle-group">
+        <label class="checkbox-label">
+          <input type="checkbox" id="config-auto-send" checked>
+          <span>Auto-send after reset</span>
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" id="config-dry-run">
+          <span class="dry-run-badge">Dry-Run Mode (Simulate without sending)</span>
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" id="config-notifications" checked>
+          <span>Desktop notifications</span>
+        </label>
+      </div>
+
+      <button id="btn-save-settings" class="btn btn-secondary w-full mt-2">Save Settings</button>
+    </div>
+
+    <!-- Test & Manual Controls -->
+    <div class="btn-group">
+      <button id="btn-test-dryrun" class="btn btn-outline" title="Verify DOM input without sending">
+        🧪 Test (Dry-Run)
+      </button>
+      <button id="btn-test-send" class="btn btn-primary" title="Instantly insert & submit message">
+        ⚡ Test (Live Send)
+      </button>
+    </div>
+
+    <div class="btn-group mt-2">
+      <button id="btn-check-now" class="btn btn-subtle flex-1">🔄 Check Now</button>
+      <button id="btn-toggle-logs" class="btn btn-subtle flex-1">📋 Activity Logs</button>
+    </div>
+
+    <!-- Logs Panel (Collapsible) -->
+    <div class="logs-container hidden" id="logs-container">
+      <div class="logs-header">
+        <span>Activity Log</span>
+        <div>
+          <button id="btn-clear-logs" class="btn-small">Clear</button>
+          <button id="btn-close-logs" class="btn-small">Close</button>
+        </div>
+      </div>
+      <div class="logs-content" id="logs-content">
+        <div class="log-entry log-DEBUG">[--:--:--] Initializing log viewer...</div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <span>Claude 5-Hour Reset Automation • macOS Safari</span>
+    </footer>
+  </div>
+
+  <script type="module" src="popup.js"></script>
+</body>
+</html>

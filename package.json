@@ -1,0 +1,35 @@
+{
+  "name": "claude-safari-reset-automation",
+  "version": "1.0.0",
+  "description": "Professional Claude Web 5-Hour Reset Automation for Safari on macOS",
+  "main": "dist/background/service-worker.js",
+  "type": "module",
+  "scripts": {
+    "build": "tsc && node scripts/build-bundle.mjs",
+    "watch": "tsc --watch",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "cli": "node dist/cli/index.js",
+    "daemon": "node dist/daemon/index.js",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "claude",
+    "safari",
+    "automation",
+    "reset-automation",
+    "safari-extension",
+    "macos"
+  ],
+  "author": "Google DeepMind Agentic Pair Programmer",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/chrome": "^0.0.280",
+    "@types/node": "^22.10.2",
+    "happy-dom": "^15.11.7",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  },
+  "dependencies": {}
+}
