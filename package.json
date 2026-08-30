@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "build": "tsc && node scripts/build-bundle.mjs",
+    "build:app": "node scripts/build-macos-app.mjs",
     "watch": "tsc --watch",
     "test": "vitest run",
     "test:watch": "vitest",
@@ -27,9 +28,9 @@
   "devDependencies": {
     "@types/chrome": "^0.0.280",
     "@types/node": "^22.10.2",
+    "esbuild": "^0.28.2",
     "happy-dom": "^15.11.7",
     "typescript": "^5.7.2",
     "vitest": "^2.1.8"
-  },
-  "dependencies": {}
+  }
 }

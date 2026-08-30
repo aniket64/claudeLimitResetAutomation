@@ -43,3 +43,7 @@ Thumbs.db
 *.swp
 *.swo
 *~
+
+# macOS App Builds
+*.app/
+macos/build/
